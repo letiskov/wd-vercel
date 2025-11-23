@@ -2,30 +2,77 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard WD</title>
+    <title>Dashboard WD — Neon Blue Cyber</title>
 
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: #0d1117;
+            background: #02040a;
             font-family: Arial, sans-serif;
-            color: #e6edf3;
+            color: #d9e6ff;
         }
 
-        h1 {
+        /* GLOW ANIMATION */
+        @keyframes neonGlow {
+            0% { box-shadow: 0 0 8px #0ff, 0 0 16px #00bfff; }
+            50% { box-shadow: 0 0 16px #00bfff, 0 0 32px #0099ff; }
+            100% { box-shadow: 0 0 8px #0ff, 0 0 16px #00bfff; }
+        }
+
+        /* HEADER */
+        .topbar {
+            width: 100%;
+            padding: 20px;
+            background: #030712;
+            border-bottom: 1px solid #0b5cff;
+            color: #75aaff;
+            font-size: 24px;
             text-align: center;
-            margin-top: 25px;
-            font-size: 28px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            animation: neonGlow 2s infinite;
         }
 
-        .table-container {
+        /* SUMMARY CARDS */
+        .cards {
+            display: flex;
+            gap: 20px;
             width: 90%;
             margin: 30px auto;
-            background: #161b22;
+        }
+
+        .card {
+            flex: 1;
+            padding: 20px;
+            background: #0a0f1a;
+            border: 1px solid #005eff;
+            border-radius: 10px;
+            box-shadow: 0 0 12px #003f88;
+            animation: neonGlow 3s infinite;
+        }
+
+        .card h3 {
+            margin: 0;
+            margin-bottom: 12px;
+            color: #4da6ff;
+            font-size: 18px;
+        }
+
+        .card p {
+            font-size: 22px;
+            color: #e6f2ff;
+        }
+
+        /* TABLE */
+        .table-container {
+            width: 90%;
+            margin: 20px auto;
+            background: #050814;
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0px 0px 25px #0005;
+            border: 1px solid #0044ff;
+            box-shadow: 0 0 20px #0044ff;
         }
 
         table {
@@ -35,33 +82,51 @@
         }
 
         th {
-            background: #21262d;
-            color: #58a6ff;
+            background: #041024;
             padding: 14px;
-            text-align: left;
-            border-bottom: 2px solid #30363d;
+            border-bottom: 1px solid #0033cc;
+            color: #66b3ff;
         }
 
         td {
             padding: 14px;
-            border-bottom: 1px solid #2d333b;
+            border-bottom: 1px solid #002266;
         }
 
         tr:hover {
-            background: #1a1f24;
+            background: #001a33;
+            cursor: pointer;
         }
 
         .loading {
             text-align: center;
             padding: 20px;
-            color: #8b949e;
+            color: #7aa9ff;
         }
+
     </style>
 </head>
 <body>
 
-<h1>Dashboard Withdraw Panel</h1>
+<div class="topbar">💠 WD DASHBOARD — NEON BLUE CYBER 💠</div>
 
+<!-- SUMMARY CARDS -->
+<div class="cards">
+    <div class="card">
+        <h3>Total WD</h3>
+        <p id="sum-total">0</p>
+    </div>
+    <div class="card">
+        <h3>Total Amount</h3>
+        <p id="sum-amount">Rp 0</p>
+    </div>
+    <div class="card">
+        <h3>Pending</h3>
+        <p id="sum-pending">0</p>
+    </div>
+</div>
+
+<!-- TABLE -->
 <div class="table-container">
     <table>
         <thead>
@@ -73,7 +138,7 @@
             </tr>
         </thead>
         <tbody id="list-container">
-            <tr><td colspan="4" class="loading">Loading data...</td></tr>
+            <tr><td colspan="4" class="loading">Loading...</td></tr>
         </tbody>
     </table>
 </div>
@@ -89,16 +154,26 @@ async function loadData() {
         const table = document.getElementById("list-container");
         table.innerHTML = "";
 
+        let totalWD = data.length;
+        let totalAmount = 0;
+        let pending = data.length; // karena ini dummy
+
         data.forEach(row => {
+            totalAmount += row.amount;
+
             table.innerHTML += `
                 <tr>
                     <td>${row.id}</td>
                     <td>${row.username}</td>
                     <td>${row.bank}</td>
-                    <td>${row.amount.toLocaleString()}</td>
+                    <td>Rp ${row.amount.toLocaleString()}</td>
                 </tr>
             `;
         });
+
+        document.getElementById("sum-total").innerText = totalWD;
+        document.getElementById("sum-amount").innerText = "Rp " + totalAmount.toLocaleString();
+        document.getElementById("sum-pending").innerText = pending;
 
     } catch (err) {
         document.getElementById("list-container").innerHTML =
