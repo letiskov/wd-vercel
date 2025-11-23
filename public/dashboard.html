@@ -11,33 +11,102 @@
             background: #02040a;
             font-family: Arial, sans-serif;
             color: #d9e6ff;
+            display: flex;
         }
 
         @keyframes neonGlow {
-            0% { box-shadow: 0 0 8px #0ff, 0 0 16px #00bfff; }
-            50% { box-shadow: 0 0 16px #00bfff, 0 0 32px #0099ff; }
-            100% { box-shadow: 0 0 8px #0ff, 0 0 16px #00bfff; }
+            0% { box-shadow: 0 0 6px #00c8ff, 0 0 12px #008cff; }
+            50% { box-shadow: 0 0 14px #00c8ff, 0 0 28px #008cff; }
+            100% { box-shadow: 0 0 6px #00c8ff, 0 0 12px #008cff; }
         }
 
-        /* HEADER CLEAN TANPA TEKS ANEH */
+        /* SIDEBAR */
+        .sidebar {
+            width: 230px;
+            height: 100vh;
+            background: #030712;
+            border-right: 1px solid #0b5cff;
+            box-shadow: 0 0 15px #003cff;
+            animation: neonGlow 2.2s infinite;
+            padding-top: 25px;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #4da6ff;
+            margin-bottom: 30px;
+            font-size: 20px;
+        }
+
+        .menu-item {
+            padding: 14px 25px;
+            color: #8cbaff;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .menu-item:hover,
+        .menu-item.active {
+            background: #001a33;
+            color: #ffffff;
+            padding-left: 35px;
+            border-left: 3px solid #00aaff;
+        }
+
+        /* MAIN CONTENT */
+        .content {
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            padding: 20px;
+        }
+
         .topbar {
             width: 100%;
-            padding: 20px;
+            padding: 14px 20px;
             background: #030712;
             border-bottom: 1px solid #0b5cff;
             color: #75aaff;
-            font-size: 26px;
-            text-align: center;
+            font-size: 22px;
             letter-spacing: 1px;
             font-weight: bold;
             animation: neonGlow 2s infinite;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
+        .topbar-title {
+            font-size: 22px;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background: #001a33;
+            border: 1px solid #00aaff;
+            border-radius: 6px;
+            color: #9fd6ff;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #003366;
+            color: #ffffff;
+            box-shadow: 0 0 10px #00aaff;
+        }
+
+        /* SUMMARY CARDS */
         .cards {
             display: flex;
             gap: 20px;
-            width: 90%;
-            margin: 30px auto;
+            width: 100%;
+            margin: 30px 0;
         }
 
         .card {
@@ -61,9 +130,10 @@
             color: #e6f2ff;
         }
 
+        /* TABLE */
         .table-container {
-            width: 90%;
-            margin: 20px auto;
+            width: 100%;
+            margin: 20px 0;
             background: #050814;
             border-radius: 12px;
             padding: 20px;
@@ -100,44 +170,185 @@
             color: #7aa9ff;
         }
 
+        .btn-edit {
+            padding: 6px 12px;
+            background: #001a33;
+            border: 1px solid #00aaff;
+            border-radius: 5px;
+            color: #9fd6ff;
+            cursor: pointer;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .btn-edit:hover {
+            background: #003366;
+            color: #ffffff;
+            box-shadow: 0 0 8px #00aaff;
+        }
+
+        /* MODAL */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .modal {
+            width: 380px;
+            background: #050814;
+            border-radius: 10px;
+            border: 1px solid #00aaff;
+            box-shadow: 0 0 20px #00aaff;
+            padding: 20px 22px;
+        }
+
+        .modal h2 {
+            margin-top: 0;
+            margin-bottom: 18px;
+            color: #4da6ff;
+            font-size: 18px;
+        }
+
+        .modal-label {
+            font-size: 13px;
+            margin-bottom: 4px;
+            color: #9fbefc;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #0044ff;
+            background: #020616;
+            color: #e6f2ff;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-cancel {
+            padding: 8px 14px;
+            background: #111827;
+            border: 1px solid #374151;
+            border-radius: 6px;
+            color: #d1d5db;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-save {
+            padding: 8px 14px;
+            background: #0284c7;
+            border: 1px solid #0ea5e9;
+            border-radius: 6px;
+            color: #e0f2fe;
+            cursor: pointer;
+            font-size: 13px;
+            box-shadow: 0 0 10px #0ea5e9;
+        }
+
+        .btn-save:hover {
+            background: #0369a1;
+        }
     </style>
 </head>
 <body>
 
-<div class="topbar">WD DASHBOARD</div>
-
-<div class="cards">
-    <div class="card">
-        <h3>Total WD</h3>
-        <p id="sum-total">0</p>
-    </div>
-    <div class="card">
-        <h3>Total Amount</h3>
-        <p id="sum-amount">Rp 0</p>
-    </div>
-    <div class="card">
-        <h3>Pending</h3>
-        <p id="sum-pending">0</p>
-    </div>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>⚡ WD PANEL</h2>
+    <div class="menu-item active">Dashboard</div>
+    <div class="menu-item">Add WD</div>
+    <div class="menu-item">Logs</div>
+    <div class="menu-item">Settings</div>
 </div>
 
-<div class="table-container">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Bank</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody id="list-container">
-            <tr><td colspan="4" class="loading">Loading...</td></tr>
-        </tbody>
-    </table>
+<!-- MAIN CONTENT -->
+<div class="content">
+
+    <div class="topbar">
+        <div class="topbar-title">WD DASHBOARD</div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- SUMMARY CARDS -->
+    <div class="cards">
+        <div class="card">
+            <h3>Total WD</h3>
+            <p id="sum-total">0</p>
+        </div>
+        <div class="card">
+            <h3>Total Amount</h3>
+            <p id="sum-amount">Rp 0</p>
+        </div>
+        <div class="card">
+            <h3>Pending</h3>
+            <p id="sum-pending">0</p>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Bank</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="list-container">
+                <tr><td colspan="5" class="loading">Loading...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- MODAL EDIT -->
+<div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal">
+        <h2>Edit Data WD</h2>
+
+        <div class="modal-label">Username</div>
+        <input id="edit-username" class="modal-input" type="text">
+
+        <div class="modal-label">Bank</div>
+        <input id="edit-bank" class="modal-input" type="text">
+
+        <div class="modal-label">Amount</div>
+        <input id="edit-amount" class="modal-input" type="number" min="0">
+
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            <button class="btn-save" onclick="saveEdit()">Save</button>
+        </div>
+    </div>
 </div>
 
 <script>
+let currentEditId = null;
+let currentData = []; // cache data hasil /api/list
+
+function logout() {
+    // kalau nanti lo pake auth pakai localStorage, hapus di sini sekalian
+    window.location.href = "/"; // balik ke index.html (login)
+}
+
 async function loadData() {
     try {
         const res = await fetch("/api/list", {
@@ -145,6 +356,8 @@ async function loadData() {
         });
 
         const data = await res.json();
+        currentData = data;
+
         const table = document.getElementById("list-container");
         table.innerHTML = "";
 
@@ -161,6 +374,9 @@ async function loadData() {
                     <td>${row.username}</td>
                     <td>${row.bank}</td>
                     <td>Rp ${row.amount.toLocaleString()}</td>
+                    <td>
+                        <button class="btn-edit" onclick="openEditModal(${row.id})">Edit</button>
+                    </td>
                 </tr>
             `;
         });
@@ -171,8 +387,74 @@ async function loadData() {
 
     } catch (err) {
         document.getElementById("list-container").innerHTML =
-            "<tr><td colspan='4' class='loading'>Gagal load data</td></tr>";
+            "<tr><td colspan='5' class='loading'>Gagal load data</td></tr>";
     }
+}
+
+function openEditModal(id) {
+    currentEditId = id;
+    const row = currentData.find(r => r.id === id);
+    if (!row) return;
+
+    document.getElementById("edit-username").value = row.username;
+    document.getElementById("edit-bank").value = row.bank;
+    document.getElementById("edit-amount").value = row.amount;
+
+    document.getElementById("modal-backdrop").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal-backdrop").style.display = "none";
+    currentEditId = null;
+}
+
+function saveEdit() {
+    if (!currentEditId) return;
+
+    const username = document.getElementById("edit-username").value.trim();
+    const bank = document.getElementById("edit-bank").value.trim();
+    const amount = Number(document.getElementById("edit-amount").value);
+
+    // update local cache
+    const idx = currentData.findIndex(r => r.id === currentEditId);
+    if (idx !== -1) {
+        currentData[idx].username = username;
+        currentData[idx].bank = bank;
+        currentData[idx].amount = amount;
+    }
+
+    // re-render table dari currentData (frontend only, belum ke backend)
+    const table = document.getElementById("list-container");
+    table.innerHTML = "";
+    let totalWD = currentData.length;
+    let totalAmount = 0;
+    let pending = currentData.length;
+
+    currentData.forEach(row => {
+        totalAmount += row.amount;
+        table.innerHTML += `
+            <tr>
+                <td>${row.id}</td>
+                <td>${row.username}</td>
+                <td>${row.bank}</td>
+                <td>Rp ${row.amount.toLocaleString()}</td>
+                <td>
+                    <button class="btn-edit" onclick="openEditModal(${row.id})">Edit</button>
+                </td>
+            </tr>
+        `;
+    });
+
+    document.getElementById("sum-total").innerText = totalWD;
+    document.getElementById("sum-amount").innerText = "Rp " + totalAmount.toLocaleString();
+    document.getElementById("sum-pending").innerText = pending;
+
+    closeModal();
+
+    // NOTE:
+    // Di tahap ini, perubahan masih di frontend.
+    // Kalau nanti mau simpan ke backend / DB,
+    // di sini lo tinggal tambahin fetch("/api/update", { method: "POST", body: ... })
 }
 
 loadData();
