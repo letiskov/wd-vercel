@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard WD — Neon Blue Cyber</title>
+    <title>WD Dashboard</title>
 
     <style>
         body {
@@ -13,28 +13,26 @@
             color: #d9e6ff;
         }
 
-        /* GLOW ANIMATION */
         @keyframes neonGlow {
             0% { box-shadow: 0 0 8px #0ff, 0 0 16px #00bfff; }
             50% { box-shadow: 0 0 16px #00bfff, 0 0 32px #0099ff; }
             100% { box-shadow: 0 0 8px #0ff, 0 0 16px #00bfff; }
         }
 
-        /* HEADER */
+        /* HEADER CLEAN TANPA TEKS ANEH */
         .topbar {
             width: 100%;
             padding: 20px;
             background: #030712;
             border-bottom: 1px solid #0b5cff;
             color: #75aaff;
-            font-size: 24px;
+            font-size: 26px;
             text-align: center;
             letter-spacing: 1px;
             font-weight: bold;
             animation: neonGlow 2s infinite;
         }
 
-        /* SUMMARY CARDS */
         .cards {
             display: flex;
             gap: 20px;
@@ -53,8 +51,7 @@
         }
 
         .card h3 {
-            margin: 0;
-            margin-bottom: 12px;
+            margin: 0 0 12px 0;
             color: #4da6ff;
             font-size: 18px;
         }
@@ -64,7 +61,6 @@
             color: #e6f2ff;
         }
 
-        /* TABLE */
         .table-container {
             width: 90%;
             margin: 20px auto;
@@ -108,9 +104,8 @@
 </head>
 <body>
 
-<div class="topbar">💠 WD DASHBOARD — NEON BLUE CYBER 💠</div>
+<div class="topbar">WD DASHBOARD</div>
 
-<!-- SUMMARY CARDS -->
 <div class="cards">
     <div class="card">
         <h3>Total WD</h3>
@@ -126,7 +121,6 @@
     </div>
 </div>
 
-<!-- TABLE -->
 <div class="table-container">
     <table>
         <thead>
@@ -156,7 +150,7 @@ async function loadData() {
 
         let totalWD = data.length;
         let totalAmount = 0;
-        let pending = data.length; // karena ini dummy
+        let pending = data.length;
 
         data.forEach(row => {
             totalAmount += row.amount;
