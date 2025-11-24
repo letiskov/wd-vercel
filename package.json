@@ -2,5 +2,7 @@
   "name": "wd-panel",
   "version": "1.0.0",
   "type": "module",
-  "dependencies": {}
+  "dependencies": {
+    "@libsql/client": "0.4.0"
+  }
 }
